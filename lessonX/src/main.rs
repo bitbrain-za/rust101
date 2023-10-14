@@ -5,11 +5,24 @@ use simple_logger::SimpleLogger;
 use std::{fs, io, str::FromStr};
 
 fn main() {
+    /* See
+    https://doc.rust-lang.org/stable/rust-by-example/attribute/cfg.html
+    https://doc.rust-lang.org/reference/conditional-compilation.html#debug_assertions
+    */
+
+    let level = if cfg!(debug_assertions) {
+        LevelFilter::Debug
+    } else {
+        LevelFilter::Info
+    };
+
+    /* https://crates.io/crates/simple_logger */
     SimpleLogger::new()
-        .with_level(LevelFilter::Debug)
+        .with_level(level)
         .init()
         .expect("Failed to initialize logger");
 
+    /* https://doc.rust-lang.org/cargo/reference/environment-variables.html */
     info!("Where am I v{}", env!("CARGO_PKG_VERSION"));
 
     let args: Vec<String> = std::env::args().collect();
@@ -26,6 +39,7 @@ fn main() {
             });
     }
 
+    /* https://doc.rust-lang.org/rust-by-example/flow_control/match.html */
     let my_location = match get_my_location() {
         Ok(loc) => loc,
         Err(e) => {
@@ -65,6 +79,14 @@ fn main() {
 
         let mut distance = landmarks[0].distance(&point2).into_kilometers();
 
+        /* https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html */
+        if let coordinate::distance::Distance::Kilometers(km) = distance {
+            debug!("You are {} kilometers from {}", km, landmarks[0]);
+        }
+        if let coordinate::distance::Distance::Miles(mi) = distance {
+            debug!("You are {} miles from {}", mi, landmarks[0]);
+        }
+
         if distance.into_inner() < 500.00 {
             println!("You found me, I was hiding at {}!", landmarks[0]);
             break;
@@ -100,6 +122,7 @@ fn get_f32_from_stdin(question: &str) -> Result<f32, String> {
 }
 
 fn get_my_location() -> Result<point::Point, Box<dyn std::error::Error>> {
+    /* https://doc.rust-lang.org/std/macro.option_env.html */
     let lat = match option_env!("MY_LAT") {
         Some(f) => f,
         None => {
