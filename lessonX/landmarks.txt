@@ -1,0 +1,50 @@
+Eiffel Tower,48.858844,2.294351
+Statue of Liberty,40.689247,-74.044502
+Machu Picchu,-13.163136,-72.545495
+Great Wall of China,40.431907,116.570374
+Sydney Opera House,-33.856784,151.215296
+Christ the Redeemer,-22.951916,-43.210487
+Taj Mahal,27.175015,78.042155
+Colosseum,41.890210,12.492231
+Mount Everest Base Camp,28.002514,86.852752
+Petra,30.328611,35.444458
+The Pyramids of Giza,29.979234,31.134202
+The Grand Canyon,36.060800,-112.141291
+Big Ben,51.500729,-0.124625
+Acropolis of Athens,37.971502,23.726456
+Vatican City,41.902916,12.453389
+Niagara Falls,43.081528,-79.063168
+Angkor Wat,13.412984,103.866557
+Mount Fuji,35.360556,138.727500
+The Great Sphinx of Giza,29.975337,31.137439
+Brandenburg Gate,52.516275,13.377704
+Burj Khalifa,25.276987,55.296249
+Petra Treasury (Al-Khazneh),30.328891,35.442533
+Stonehenge,51.178883,-1.826215
+Chichen Itza,20.682870,-88.567321
+Potala Palace,29.657842,91.116954
+Mount Rushmore,43.879102,-103.459067
+Sagrada Familia,41.404532,2.174355
+The Kremlin,55.751244,37.618423
+Mount Kilimanjaro,3.067425,37.355627
+Hagia Sophia,41.008580,28.980172
+Moai Statues (Easter Island),-27.112723,-109.349686
+The Parthenon (Nashville),36.166879,-86.771080
+The Louvre Museum,48.860642,2.337841
+Victoria Falls,-17.924244,25.857515
+The Great Barrier Reef,-16.500000,146.500000
+Golden Gate Bridge,37.819928,-122.478255
+Red Square,55.753930,37.620795
+Sydney Harbour Bridge,-33.852306,151.210787
+Table Mountain,-33.964380,18.406233
+Teotihuacan,19.692200,-98.843982
+Burj Al Arab,25.141305,55.185508
+Palmyra,34.551948,38.271643
+Ayers Rock (Uluru),-25.344490,131.036891
+Machu Picchu (Huayna Picchu),-13.163068,-72.547440
+Christ the Redeemer (Corcovado),-22.951900,-43.209600
+The Colossus of Rhodes,36.456477,28.225557
+Mont Saint-Michel,48.635522,-1.511140
+The Great Wall of Los Angeles,34.184664,-118.478135
+The Palais Garnier,48.872026,2.331805
+The Suez Canal,30.585164,32.265019

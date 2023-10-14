@@ -2,15 +2,29 @@ mod coordinate;
 use coordinate::point;
 use log::{debug, error, info, LevelFilter};
 use simple_logger::SimpleLogger;
-use std::io;
+use std::{fs, io, str::FromStr};
 
 fn main() {
     SimpleLogger::new()
-        .with_level(LevelFilter::Info)
+        .with_level(LevelFilter::Debug)
         .init()
         .expect("Failed to initialize logger");
 
     info!("Where am I v{}", env!("CARGO_PKG_VERSION"));
+
+    let args: Vec<String> = std::env::args().collect();
+    let mut landmarks: Vec<point::Point> = Vec::new();
+    if args.len() > 1 {
+        debug!("{:?}", args);
+        let path = std::path::Path::new(&args[1]);
+        debug!("path: {:?}", path);
+        fs::read_to_string(path)
+            .expect("Error reading file")
+            .lines()
+            .for_each(|line| {
+                landmarks.push(point::Point::from_str(line).expect("Error parsing line"));
+            });
+    }
 
     let my_location = match get_my_location() {
         Ok(loc) => loc,
@@ -19,7 +33,8 @@ fn main() {
             return;
         }
     };
-    debug!("my_location: {:?}", my_location);
+    debug!("{}", my_location);
+    landmarks.push(my_location);
 
     loop {
         let lat = match get_f32_from_stdin("Enter latitude:") {
@@ -37,14 +52,21 @@ fn main() {
             }
         };
         let point2 = point::Point {
+            name: Some("Me".to_string()),
             latitude: lat,
             longitude: lon,
         };
 
-        let mut distance = my_location.distance(&point2).into_kilometers();
+        landmarks.sort_by(|a, b| {
+            a.distance(&point2)
+                .into_inner()
+                .total_cmp(&b.distance(&point2).into_inner())
+        });
+
+        let mut distance = landmarks[0].distance(&point2).into_kilometers();
 
         if distance.into_inner() < 500.00 {
-            println!("You found me, I was hiding at {}!", my_location);
+            println!("You found me, I was hiding at {}!", landmarks[0]);
             break;
         }
 
@@ -97,5 +119,5 @@ fn get_my_location() -> Result<point::Point, Box<dyn std::error::Error>> {
     let lat: f32 = lat.parse()?;
     let lon: f32 = lon.parse()?;
 
-    Ok(point::Point::new(lat, lon))
+    Ok(point::Point::new(None, lat, lon))
 }
