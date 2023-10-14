@@ -47,8 +47,8 @@ impl Point {
 
 impl Display for Point {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self.name {
-            Some(ref name) => write!(
+        match &self.name {
+            Some(name) => write!(
                 f,
                 "{}: lat: {}, lon:{}",
                 name, self.latitude, self.longitude
