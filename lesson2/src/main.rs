@@ -13,20 +13,26 @@ impl Point {
         }
     }
 
-    fn add(self, other: Point) -> Self {
-        Self {
-            x: self.x + other.x,
-            y: self.y + other.y,
-        }
+    // fn add(self, other: Point) -> Self {
+    //     Self {
+    //         x: self.x + other.x,
+    //         y: self.y + other.y,
+    //     }
+    // }
+
+    fn add(&mut self, other: Point) {
+        self.x += other.x;
+        self.y += other.y;
     }
 }
 
 fn main() {
-    let point = Point::new();
+    let mut point = Point::new();
     let other = Point::new();
 
-    let third_point = point.add(other);
+    // let third_point = point.add(other);
+    point.add(other);
 
-    // println!("Point: {}, {}", point.x, point.y);
-    println!("New Point: {}, {}", third_point.x, third_point.y);
+    println!("Point: {}, {}", point.x, point.y);
+    // println!("New Point: {}, {}", third_point.x, third_point.y);
 }
